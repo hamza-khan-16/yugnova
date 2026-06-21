@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Pencil, Trash2, Save, X, GripVertical, FolderKanban } from "lucide-react";
 import { supabase, type Project } from "@/lib/supabase";
 import { adminDeleteRowFn, adminSaveRowFn } from "@/lib/api/adminData.functions";
+import { MediaUploadField } from "@/components/admin/MediaUploadField";
 import { toast } from "sonner";
 
 const EMPTY: Omit<Project, "id" | "created_at"> = {
@@ -158,7 +159,15 @@ export function ProjectsManager() {
               </div>
               <Field label="Tags (comma separated)"><input className={inp} value={tagsInput} onChange={e => setTagsInput(e.target.value)} placeholder="Web App, Mobile, AI" /></Field>
               <Field label="Description"><textarea className={inp + " resize-none"} rows={3} value={editing.description} onChange={e => setEditing({ ...editing, description: e.target.value })} placeholder="Project description..." /></Field>
-              <Field label="Image URL"><input className={inp} value={editing.image} onChange={e => setEditing({ ...editing, image: e.target.value })} placeholder="https://... or /local.png" /></Field>
+              <Field label="Image">
+                <MediaUploadField
+                  value={editing.image}
+                  onChange={(url) => setEditing({ ...editing, image: url })}
+                  folder="project-images"
+                  accept="image/*"
+                  placeholder="https://... or upload"
+                />
+              </Field>
               <Field label="Project Link"><input className={inp} value={editing.link} onChange={e => setEditing({ ...editing, link: e.target.value })} placeholder="https://..." /></Field>
               <Field label="Order Index"><input className={inp} type="number" value={editing.order_index} onChange={e => setEditing({ ...editing, order_index: +e.target.value })} /></Field>
               <div className="flex gap-3 pt-2">

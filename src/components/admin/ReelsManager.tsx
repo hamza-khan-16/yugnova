@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Pencil, Trash2, Save, X, GripVertical, Film } from "lucide-react";
 import { supabase, type Reel } from "@/lib/supabase";
 import { adminDeleteRowFn, adminSaveRowFn } from "@/lib/api/adminData.functions";
+import { MediaUploadField } from "@/components/admin/MediaUploadField";
 import { toast } from "sonner";
 
 const EMPTY: Omit<Reel, "id" | "created_at"> = {
@@ -146,8 +147,24 @@ export function ReelsManager() {
                 <Field label="Likes (e.g. 12.4K)"><input className={inp} value={editing.likes} onChange={e => setEditing({ ...editing, likes: e.target.value })} placeholder="12.4K" /></Field>
               </div>
               <Field label="Quote / Text"><textarea className={inp + " resize-none"} rows={3} value={editing.text} onChange={e => setEditing({ ...editing, text: e.target.value })} placeholder="Short testimonial quote..." /></Field>
-              <Field label="Poster Image URL"><input className={inp} value={editing.poster} onChange={e => setEditing({ ...editing, poster: e.target.value })} placeholder="https://..." /></Field>
-              <Field label="Video URL"><input className={inp} value={editing.video} onChange={e => setEditing({ ...editing, video: e.target.value })} placeholder="https://..." /></Field>
+              <Field label="Poster Image">
+                <MediaUploadField
+                  value={editing.poster}
+                  onChange={(url) => setEditing({ ...editing, poster: url })}
+                  folder="reel-posters"
+                  accept="image/*"
+                  placeholder="https://... or upload"
+                />
+              </Field>
+              <Field label="Video">
+                <MediaUploadField
+                  value={editing.video}
+                  onChange={(url) => setEditing({ ...editing, video: url })}
+                  folder="reel-videos"
+                  accept="video/*"
+                  placeholder="https://... or upload"
+                />
+              </Field>
               <Field label="Order Index"><input className={inp} type="number" value={editing.order_index} onChange={e => setEditing({ ...editing, order_index: +e.target.value })} /></Field>
               <div className="flex gap-3 pt-2">
                 <button onClick={close} className="flex-1 py-2.5 rounded-xl text-sm text-white/60 bg-white/5 hover:bg-white/10 transition-all">Cancel</button>

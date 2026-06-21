@@ -64,6 +64,22 @@ create policy "public read projects" on projects for select using (true);
 create policy "public read plans" on plans for select using (true);
 
 -- ============================================================
+-- Storage bucket for admin-uploaded media (reel posters/videos,
+-- project images). Public read so the site can display the files;
+-- uploads only ever happen via signed URLs minted by the admin
+-- server function (adminUpload.functions.ts), which uses the
+-- service_role key and bypasses storage RLS — so no public insert
+-- policy is needed here, same reasoning as the tables above.
+-- ============================================================
+
+insert into storage.buckets (id, name, public)
+values ('media', 'media', true)
+on conflict (id) do nothing;
+
+create policy "public read media" on storage.objects
+  for select using (bucket_id = 'media');
+
+-- ============================================================
 -- Seed data (optional — remove if you want to start fresh)
 -- ============================================================
 

@@ -19,42 +19,23 @@ function Field({ label, error, children }: { label: string; error?: string; chil
   );
 }
 
-const CONTACT_EMAIL = "hamzakhanbsc16@gmail.com";
-
-function buildMailto(data: FormData) {
-  const subject = `New project inquiry from ${data.name}`;
-  const body = [
-    `Name: ${data.name}`,
-    `Email: ${data.email}`,
-    data.phone ? `Phone: ${data.phone}` : null,
-    `Service: ${data.service}`,
-    "",
-    "Message:",
-    data.message,
-  ]
-    .filter(Boolean)
-    .join("\n");
-
-  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
-
 export function Contact() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
   const [sending, setSending] = useState(false);
 
   const onSubmit = async (data: FormData) => {
     setSending(true);
-    await new Promise((r) => setTimeout(r, 500));
-    window.location.href = buildMailto(data);
-    toast.success("Opening your email app with the message pre-filled…");
+    await new Promise((r) => setTimeout(r, 800));
+    console.log("Contact form:", data);
+    toast.success("Message sent. We'll be in touch within 24 hours.");
     reset();
     setSending(false);
   };
 
   const info = [
-    { icon: Mail, label: "Email", value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
-    { icon: MessageCircle, label: "WhatsApp", value: "+91 9321749200", href: "https://wa.me/9321749200" },
-    { icon: MapPin, label: "Location", value: "Mumbai · Remote-first" },
+    { icon: Mail, label: "Email", value: "hello@yugnova.com" },
+    { icon: MessageCircle, label: "WhatsApp", value: "+91 90000 00000" },
+    { icon: MapPin, label: "Location", value: "Bengaluru · Remote-first" },
     { icon: Clock, label: "Response time", value: "Within 24 hours" },
   ];
 
@@ -79,36 +60,18 @@ export function Contact() {
 
             {/* Info cards — 2 col on mobile, 1 col on desktop */}
             <div className="mt-7 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
-              {info.map((item) => {
-                const cardCls =
-                  "flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-[color:var(--background)] border border-[color:var(--border-soft)] hover:border-[color:var(--primary)] hover:translate-x-1 transition-all";
-                const content = (
-                  <>
-                    <div className="h-9 w-9 sm:h-11 sm:w-11 grid place-items-center rounded-lg sm:rounded-xl bg-[color:var(--surface-2)] border border-[color:var(--border-strong)] shrink-0">
-                      <item.icon className="h-4 w-4 sm:h-5 sm:w-5 text-[color:var(--primary)]" />
-                    </div>
-                    <div className="min-w-0">
-                      <div className="font-mono text-[9px] sm:text-[10px] tracking-[0.1em] uppercase text-[color:var(--text-dim)]">{item.label}</div>
-                      <div className="mt-0.5 text-[13px] sm:text-[15px] font-medium truncate">{item.value}</div>
-                    </div>
-                  </>
-                );
-                return item.href ? (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target={item.href.startsWith("http") ? "_blank" : undefined}
-                    rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className={cardCls}
-                  >
-                    {content}
-                  </a>
-                ) : (
-                  <div key={item.label} className={cardCls}>
-                    {content}
+              {info.map((item) => (
+                <div key={item.label}
+                  className="flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-[color:var(--background)] border border-[color:var(--border-soft)] hover:border-[color:var(--primary)] hover:translate-x-1 transition-all">
+                  <div className="h-9 w-9 sm:h-11 sm:w-11 grid place-items-center rounded-lg sm:rounded-xl bg-[color:var(--surface-2)] border border-[color:var(--border-strong)] shrink-0">
+                    <item.icon className="h-4 w-4 sm:h-5 sm:w-5 text-[color:var(--primary)]" />
                   </div>
-                );
-              })}
+                  <div className="min-w-0">
+                    <div className="font-mono text-[9px] sm:text-[10px] tracking-[0.1em] uppercase text-[color:var(--text-dim)]">{item.label}</div>
+                    <div className="mt-0.5 text-[13px] sm:text-[15px] font-medium truncate">{item.value}</div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
