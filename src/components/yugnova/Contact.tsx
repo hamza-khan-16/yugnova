@@ -40,7 +40,7 @@ export function Contact() {
           <div>
             <SectionLabel>Contact</SectionLabel>
             <h2 className="font-display mt-4 font-extrabold leading-[1.1] tracking-[-0.02em]"
-              style={{ fontSize: "clamp(28px, 4vw, 44px)" }}>
+              style={{ fontSize: "clamp(22px, 4vw, 44px)" }}>
               LET'S BUILD SOMETHING AMAZING TOGETHER
             </h2>
             <p className="mt-5 max-w-md text-[15px] leading-relaxed text-[color:var(--text-soft)]">

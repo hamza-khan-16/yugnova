@@ -120,7 +120,7 @@ export function Pricing() {
         <SectionLabel>Pricing</SectionLabel>
         <h2
           className="font-display mt-4 font-extrabold leading-[1.05] tracking-[-0.02em]"
-          style={{ fontSize: "clamp(30px, 4.5vw, 46px)" }}
+          style={{ fontSize: "clamp(23px, 4.5vw, 46px)" }}
         >
           TRANSPARENT PRICING
         </h2>

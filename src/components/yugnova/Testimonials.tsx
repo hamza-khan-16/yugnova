@@ -35,7 +35,7 @@ export function Testimonials() {
       <div className="mx-auto max-w-[1280px] px-6 md:px-12">
         <div className="text-center max-w-2xl mx-auto">
           <SectionLabel center>Kind Words</SectionLabel>
-          <h2 className="font-display mt-6 text-[clamp(28px,5vw,72px)] font-extrabold leading-[1.05] tracking-[-0.03em] break-words">
+          <h2 className="font-display mt-6 text-[clamp(20px,4.5vw,56px)] font-extrabold leading-[1.05] tracking-[-0.03em] break-words">
             Trusted by teams who <span className="gradient-text">ship</span>
           </h2>
         </div>

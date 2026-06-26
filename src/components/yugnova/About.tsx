@@ -32,7 +32,7 @@ export function About() {
           >
             <SectionLabel>About Us</SectionLabel>
             <h2 className="font-display mt-4 font-extrabold leading-[1.05] tracking-[-0.02em]"
-              style={{ fontSize: "clamp(30px, 4.5vw, 46px)" }}>
+              style={{ fontSize: "clamp(23px, 4.5vw, 46px)" }}>
               WE ARE <span className="text-[color:var(--primary)]">YUGNOVA</span>
             </h2>
             <p className="mt-5 max-w-md text-[15px] leading-relaxed text-[color:var(--text-soft)]">

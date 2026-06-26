@@ -14,8 +14,8 @@ export function Process() {
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8 md:px-12">
         <div className="text-center max-w-2xl mx-auto">
           <SectionLabel center>How We Work</SectionLabel>
-          <h2 className="font-display mt-5 sm:mt-6 font-extrabold leading-[1] tracking-[-0.03em]"
-            style={{ fontSize: "clamp(32px, 5vw, 72px)" }}>
+          <h2 className="font-display mt-5 sm:mt-6 font-extrabold leading-[1.05] tracking-[-0.03em]"
+            style={{ fontSize: "clamp(22px, 4.5vw, 56px)" }}>
             Our proven <span className="gradient-text">process</span>
           </h2>
         </div>

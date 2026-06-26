@@ -28,7 +28,7 @@ export function Hero() {
             </div>
 
             <h1 className="font-display mt-4 font-extrabold leading-[1.02] tracking-[-0.02em]"
-              style={{ fontSize: "clamp(34px, 5.4vw, 58px)" }}>
+              style={{ fontSize: "clamp(26px, 5.4vw, 58px)" }}>
               WE BUILD DIGITAL PRODUCTS THAT{" "}
               <span className="text-[color:var(--primary)]">DRIVE GROWTH</span>
             </h1>
