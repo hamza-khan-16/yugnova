@@ -32,7 +32,7 @@ export function Footer() {
             <div className="mt-6 flex gap-2 md:gap-3 flex-wrap">
               {socials.map((s) => (
                 <a key={s} href="#"
-                  className="h-9 w-9 md:h-10 md:w-10 grid place-items-center rounded-[10px] bg-[color:var(--surface-2)] border border-[color:var(--border-soft)] font-mono text-[10px] md:text-[11px] font-bold text-[color:var(--text-soft)] hover:bg-[color:var(--primary)] hover:text-white hover:border-[color:var(--primary)] hover:-translate-y-0.5 transition-all">
+                  className="h-9 w-9 md:h-10 md:w-10 grid place-items-center rounded-[10px] bg-[color:var(--surface-2)] border border-[color:var(--border-soft)] font-mono text-[10px] md:text-[11px] font-bold text-[color:var(--text-soft)] hover:bg-[color:var(--primary)] hover:text-[color:var(--primary-foreground)] hover:border-[color:var(--primary)] hover:-translate-y-0.5 transition-all">
                   {s}
                 </a>
               ))}
@@ -67,7 +67,7 @@ export function Footer() {
               value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="you@email.com"
               className="bg-[color:var(--surface)] border border-[color:var(--border-strong)] border-r-0 rounded-l-full px-4 md:px-5 py-2.5 text-[12px] md:text-[13px] flex-1 sm:w-[200px] md:w-[220px] outline-none focus:border-[color:var(--primary)] placeholder:text-[color:var(--text-dim)]"
             />
-            <button className="bg-[color:var(--primary)] hover:bg-[color:var(--accent)] text-white font-mono text-[9px] md:text-[10px] tracking-[0.1em] uppercase px-4 md:px-5 rounded-r-full transition-colors whitespace-nowrap">
+            <button className="bg-[color:var(--primary)] hover:bg-[color:var(--accent)] text-[color:var(--primary-foreground)] font-mono text-[9px] md:text-[10px] tracking-[0.1em] uppercase px-4 md:px-5 rounded-r-full transition-colors whitespace-nowrap">
               Subscribe
             </button>
           </form>

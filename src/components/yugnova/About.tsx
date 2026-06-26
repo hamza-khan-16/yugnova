@@ -1,91 +1,72 @@
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
+import { CheckCircle2, Clock, Heart, DollarSign, Cpu, RotateCcw } from "lucide-react";
 import { SectionLabel } from "./SectionLabel";
 
 const stats = [
-  { value: 50, suffix: "+", label: "Projects Delivered" },
-  { value: 30, suffix: "+", label: "Happy Clients" },
-  { value: 98, suffix: "%", label: "Client Satisfaction" },
-  { value: 3, suffix: "+", label: "Years of Excellence" },
+  { value: "50+", label: "Projects Completed" },
+  { value: "30+", label: "Happy Clients" },
+  { value: "5+", label: "Years of Experience" },
 ];
 
-const timeline = [
-  { title: "Founded with a vision", desc: "YUGNOVA was born from a desire to build technology that's not just functional — but extraordinary." },
-  { title: "AI-first approach", desc: "Every product we build is engineered with intelligence at its core, leveraging the latest in machine learning and automation." },
-  { title: "Global reach, local roots", desc: "Based in India, serving clients worldwide. Remote-first since day one." },
+const values = [
+  { icon: CheckCircle2, title: "Quality & Performance", desc: "We never compromise on quality." },
+  { icon: Clock, title: "On-Time Delivery", desc: "We respect your time and deadlines." },
+  { icon: Heart, title: "Client-Centric Approach", desc: "Your success is our priority." },
+  { icon: DollarSign, title: "Affordable Pricing", desc: "High quality without breaking the bank." },
+  { icon: Cpu, title: "Modern Technologies", desc: "We use the latest tools and frameworks." },
+  { icon: RotateCcw, title: "Ongoing Support", desc: "We're with you, even after delivery." },
 ];
-
-function Counter({ to, suffix }: { to: number; suffix: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
-  const [n, setN] = useState(0);
-  useEffect(() => {
-    if (!inView) return;
-    const dur = 1600, start = performance.now();
-    let raf = 0;
-    const step = (t: number) => {
-      const p = Math.min(1, (t - start) / dur);
-      setN(Math.floor(to * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, to]);
-  return <span ref={ref}>{n}{suffix}</span>;
-}
 
 export function About() {
   return (
-    <section id="about" className="relative py-20 md:py-28 lg:py-32 bg-[color:var(--background)]">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-12">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <section id="about" className="relative overflow-hidden py-20 md:py-28">
+      <div className="absolute inset-0 -z-10">
+        <img src="/backgrounds/bg-about.jpeg" alt="" className="h-full w-full object-cover object-center" style={{ imageRendering: "auto", filter: "none" }} />
+        <div className="absolute inset-0 bg-[#0c0d13]/70" />
+      </div>
+      <div className="mx-auto max-w-[1280px] px-5 sm:px-8 md:px-12">
+        <div className="grid gap-14 items-center mb-16 max-w-3xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.7 }}
           >
-            <SectionLabel>About YUGNOVA</SectionLabel>
-            <h2 className="font-display mt-6 text-[clamp(32px,5vw,72px)] font-extrabold leading-[1] tracking-[-0.03em]">
-              We are the <span className="gradient-text">builders</span> of tomorrow
+            <SectionLabel>About Us</SectionLabel>
+            <h2 className="font-display mt-4 font-extrabold leading-[1.05] tracking-[-0.02em]"
+              style={{ fontSize: "clamp(30px, 4.5vw, 46px)" }}>
+              WE ARE <span className="text-[color:var(--primary)]">YUGNOVA</span>
             </h2>
-            <p className="mt-6 text-[15px] md:text-lg leading-[1.7] text-[color:var(--text-soft)]">
-              YUGNOVA is a premium technology studio specializing in AI solutions, cutting-edge web development, mobile applications, and digital innovation. Founded with care, we bring enterprise-grade quality to ambitious startups and growing brands.
+            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-[color:var(--text-soft)]">
+              We are a team of passionate developers, designers, and problem-solvers dedicated to building digital products that make a difference.
             </p>
-            <div className="mt-8 md:mt-10 space-y-6 md:space-y-7">
-              {timeline.map((t, i) => (
-                <motion.div key={t.title}
-                  initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="flex gap-4 md:gap-5"
-                >
-                  <div className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[color:var(--primary)]"
-                    style={{ boxShadow: "0 0 12px var(--glow)" }} />
-                  <div>
-                    <h4 className="font-display text-[15px] md:text-base font-bold">{t.title}</h4>
-                    <p className="mt-1 text-[13px] md:text-sm leading-[1.6] text-[color:var(--text-soft)]">{t.desc}</p>
-                  </div>
-                </motion.div>
+
+            <div className="mt-8 grid grid-cols-3 gap-3 max-w-md">
+              {stats.map((s) => (
+                <div key={s.label} className="rounded-xl border border-[color:var(--border-soft)] bg-[color:var(--surface)] px-4 py-4 text-center">
+                  <div className="font-display text-[24px] font-extrabold text-[color:var(--primary)]">{s.value}</div>
+                  <div className="mt-1 font-mono text-[8.5px] tracking-[0.1em] uppercase text-[color:var(--text-dim)] leading-tight">{s.label}</div>
+                </div>
               ))}
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.8 }}
-          >
-            <div className="relative rounded-2xl md:rounded-3xl bg-[color:var(--surface)] border border-[color:var(--border-strong)] p-6 md:p-10 overflow-hidden backdrop-blur-xl">
-              <div className="absolute inset-0 rounded-3xl" style={{ background: "linear-gradient(135deg, rgba(0,71,171,0.07), rgba(0,45,114,0.03))" }} />
-              <div className="relative grid grid-cols-2 gap-3 md:gap-5">
-                {stats.map((s) => (
-                  <div key={s.label} className="rounded-xl md:rounded-2xl bg-[color:var(--surface-2)] border border-[color:var(--border-soft)] p-5 md:p-7 text-center hover:border-[color:var(--primary)] hover:-translate-y-1 transition-all">
-                    <div className="font-display text-[36px] md:text-5xl font-extrabold tracking-[-0.04em] gradient-text">
-                      <Counter to={s.value} suffix={s.suffix} />
-                    </div>
-                    <div className="mt-1.5 md:mt-2 font-mono text-[9px] md:text-[10px] tracking-[0.15em] uppercase text-[color:var(--text-dim)]">{s.label}</div>
-                  </div>
-                ))}
+        </div>
+
+        {/* Values */}
+        <div>
+          <div className="font-mono text-[11px] tracking-[0.2em] uppercase text-[color:var(--text-dim)] mb-6">Our Values</div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {values.map((v) => (
+              <div key={v.title} className="flex gap-4">
+                <div className="h-10 w-10 shrink-0 rounded-lg bg-[color:var(--surface-2)] grid place-items-center text-[color:var(--primary)]">
+                  <v.icon className="h-4.5 w-4.5" />
+                </div>
+                <div>
+                  <h5 className="font-display text-[15px] font-bold">{v.title}</h5>
+                  <p className="mt-1 text-[13.5px] text-[color:var(--text-soft)]">{v.desc}</p>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

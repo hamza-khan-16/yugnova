@@ -40,22 +40,22 @@
 }
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ffffff;
-  --surface: #111111;
-  --surface-2: #181818;
+  --background: #0c0d13;
+  --foreground: #f4f2ea;
+  --surface: #13141d;
+  --surface-2: #1c1e2b;
   --border-soft: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.16);
   --muted: rgba(255, 255, 255, 0.06);
   --muted-foreground: rgba(255, 255, 255, 0.6);
-  --text-soft: rgba(255, 255, 255, 0.6);
-  --text-dim: rgba(255, 255, 255, 0.35);
-  --primary: #0047ab;
-  --primary-foreground: #ffffff;
-  --accent: #002d72;
-  --glow: rgba(0, 71, 171, 0.5);
-  --grad: linear-gradient(135deg, #0047ab 0%, #00a4ff 50%, #002d72 100%);
-  --grad-text: linear-gradient(90deg, #4a9eff 0%, #0047ab 50%, #002d72 100%);
+  --text-soft: rgba(244, 242, 234, 0.62);
+  --text-dim: rgba(244, 242, 234, 0.38);
+  --primary: #f3d62b;
+  --primary-foreground: #0c0d13;
+  --accent: #ef5b86;
+  --glow: rgba(243, 214, 43, 0.45);
+  --grad: linear-gradient(135deg, #f3d62b 0%, #f3d62b 100%);
+  --grad-text: linear-gradient(90deg, #f3d62b 0%, #f3d62b 100%);
   --radius: 16px;
 }
 
@@ -77,6 +77,14 @@
 @layer base {
   * {
     border-color: var(--border-soft);
+  }
+  /* Ensure full-bleed background images are always crisp */
+  .absolute.inset-0.-z-10 img,
+  [class*="-z-10"] img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    backface-visibility: hidden;
+    transform: translateZ(0);
   }
   html {
     scroll-behavior: smooth;

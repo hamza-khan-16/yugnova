@@ -1,0 +1,73 @@
+<svg width="900" height="900" viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgGlow" cx="40%" cy="25%" r="75%">
+      <stop offset="0%" stop-color="#1c1f33"/>
+      <stop offset="60%" stop-color="#13141d"/>
+      <stop offset="100%" stop-color="#0c0d13"/>
+    </radialGradient>
+    <linearGradient id="laptopBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f2130"/>
+      <stop offset="100%" stop-color="#15161d"/>
+    </linearGradient>
+    <linearGradient id="screenGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2d44"/>
+      <stop offset="100%" stop-color="#181a24"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="900" fill="url(#bgGlow)"/>
+
+  <!-- soft floating circles -->
+  <circle cx="730" cy="150" r="90" fill="#1c1e2b"/>
+  <circle cx="730" cy="150" r="55" fill="#f3d62b" opacity="0.9"/>
+  <circle cx="120" cy="700" r="60" fill="#1c1e2b"/>
+  <circle cx="120" cy="700" r="34" fill="#ef5b86" opacity="0.85"/>
+
+  <!-- desk / surface -->
+  <rect x="60" y="640" width="780" height="20" rx="10" fill="#1c1e2b"/>
+
+  <!-- laptop -->
+  <g>
+    <rect x="280" y="430" width="340" height="210" rx="14" fill="url(#screenGlow)" stroke="#2a2c3c" stroke-width="2"/>
+    <rect x="300" y="450" width="300" height="170" rx="6" fill="#0c0d13"/>
+    <!-- growth chart on screen -->
+    <polyline points="320,600 380,560 430,580 480,500 540,520 580,460" fill="none" stroke="#f3d62b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="580" cy="460" r="8" fill="#f3d62b"/>
+    <rect x="320" y="455" width="80" height="10" rx="5" fill="#3a3d52"/>
+    <rect x="320" y="472" width="120" height="6" rx="3" fill="#2a2c3c"/>
+    <!-- keyboard base -->
+    <path d="M250 640 L650 640 L630 690 L270 690 Z" fill="url(#laptopBody)"/>
+  </g>
+
+  <!-- floating UI cards -->
+  <g>
+    <rect x="120" y="330" width="170" height="110" rx="16" fill="#181a24" stroke="#2a2c3c" stroke-width="2"/>
+    <circle cx="155" cy="365" r="14" fill="#f3d62b"/>
+    <rect x="180" y="358" width="80" height="8" rx="4" fill="#3a3d52"/>
+    <rect x="140" y="395" width="220" height="6" rx="3" fill="#2a2c3c"/>
+    <rect x="140" y="410" width="160" height="6" rx="3" fill="#2a2c3c"/>
+  </g>
+
+  <g>
+    <rect x="600" y="280" width="200" height="130" rx="18" fill="#181a24" stroke="#2a2c3c" stroke-width="2"/>
+    <rect x="624" y="304" width="60" height="60" rx="10" fill="#ef5b86" opacity="0.9"/>
+    <rect x="696" y="310" width="80" height="10" rx="5" fill="#3a3d52"/>
+    <rect x="696" y="328" width="60" height="8" rx="4" fill="#2a2c3c"/>
+    <rect x="624" y="378" width="152" height="6" rx="3" fill="#2a2c3c"/>
+  </g>
+
+  <!-- person silhouette walking up growth bars -->
+  <g>
+    <rect x="690" y="600" width="40" height="40" fill="#1c1e2b"/>
+    <rect x="690" y="560" width="40" height="40" fill="#23263a"/>
+    <rect x="690" y="520" width="40" height="40" fill="#2e3250"/>
+    <rect x="690" y="480" width="40" height="40" fill="#3a3e63"/>
+    <circle cx="710" cy="450" r="14" fill="#f4f2ea"/>
+    <rect x="700" y="464" width="20" height="32" rx="8" fill="#f4f2ea"/>
+  </g>
+
+  <!-- small floating shapes for energy -->
+  <rect x="800" y="500" width="26" height="26" rx="6" fill="#7c6cf0" transform="rotate(20 813 513)"/>
+  <circle cx="60" cy="220" r="10" fill="#f3d62b"/>
+  <circle cx="850" cy="700" r="14" fill="#ef5b86" opacity="0.8"/>
+</svg>

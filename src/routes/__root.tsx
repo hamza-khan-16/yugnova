@@ -14,7 +14,11 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-4">
+      <div className="absolute inset-0 -z-10">
+        <img src="/backgrounds/bg-404.jpg" alt="" className="h-full w-full object-cover opacity-65" />
+        <div className="absolute inset-0 bg-[#0c0d13]/70" />
+      </div>
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>

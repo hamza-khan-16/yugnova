@@ -15,7 +15,7 @@ function Card({ t }: { t: (typeof tns)[number] }) {
       <div className="font-mono text-xs tracking-[0.2em] text-[color:var(--primary)] mb-4">★★★★★</div>
       <p className="relative text-[14px] md:text-[16px] leading-[1.75] text-[color:var(--text-soft)] mb-7 break-words">"{t.text}"</p>
       <div className="flex items-center gap-3.5">
-        <div className="h-10 w-10 md:h-11 md:w-11 rounded-full gradient-bg grid place-items-center font-display text-base md:text-lg font-bold text-white border-2 border-[color:var(--primary)]/30 shrink-0">
+        <div className="h-10 w-10 md:h-11 md:w-11 rounded-full gradient-bg grid place-items-center font-display text-base md:text-lg font-bold text-[color:var(--primary-foreground)] border-2 border-[color:var(--primary)]/30 shrink-0">
           {t.name.charAt(0)}
         </div>
         <div className="min-w-0">
@@ -31,6 +31,7 @@ export function Testimonials() {
   const loop = [...tns, ...tns];
   return (
     <section id="testimonials" className="relative py-20 md:py-28 lg:py-32 bg-[color:var(--background)] overflow-hidden">
+      
       <div className="mx-auto max-w-[1280px] px-6 md:px-12">
         <div className="text-center max-w-2xl mx-auto">
           <SectionLabel center>Kind Words</SectionLabel>

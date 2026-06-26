@@ -40,7 +40,7 @@ export function Process() {
                     style={{ background: "linear-gradient(180deg, var(--primary), transparent)" }} />
                 )}
 
-                <div className="relative shrink-0 h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 grid place-items-center rounded-full bg-[color:var(--surface)] border border-[color:var(--border-strong)] font-display text-lg sm:text-xl lg:text-2xl font-extrabold text-[color:var(--primary)] transition-all duration-500 group-hover:bg-[color:var(--primary)] group-hover:text-white group-hover:scale-110 lg:mx-auto">
+                <div className="relative shrink-0 h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 grid place-items-center rounded-full bg-[color:var(--surface)] border border-[color:var(--border-strong)] font-display text-lg sm:text-xl lg:text-2xl font-extrabold text-[color:var(--primary)] transition-all duration-500 group-hover:bg-[color:var(--primary)] group-hover:text-[color:var(--primary-foreground)] group-hover:scale-110 lg:mx-auto">
                   <span className="absolute -inset-1 rounded-full border border-dashed border-[color:var(--border-strong)] animate-spin-slow" />
                   {s.n}
                 </div>

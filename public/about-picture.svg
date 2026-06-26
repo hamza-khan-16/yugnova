@@ -1,0 +1,58 @@
+<svg width="900" height="900" viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgGlowA" cx="60%" cy="20%" r="80%">
+      <stop offset="0%" stop-color="#241a30"/>
+      <stop offset="55%" stop-color="#15131f"/>
+      <stop offset="100%" stop-color="#0c0d13"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#bgGlowA)"/>
+
+  <!-- abstract clustered figures representing the team -->
+  <g>
+    <circle cx="330" cy="380" r="60" fill="#1c1e2b"/>
+    <circle cx="330" cy="330" r="34" fill="#f4f2ea"/>
+    <rect x="270" y="360" width="120" height="120" rx="40" fill="#f4f2ea"/>
+  </g>
+  <g>
+    <circle cx="540" cy="420" r="70" fill="#23263a"/>
+    <circle cx="540" cy="362" r="40" fill="#ddd9c9"/>
+    <rect x="468" y="396" width="144" height="140" rx="46" fill="#ddd9c9"/>
+  </g>
+  <g>
+    <circle cx="430" cy="540" r="56" fill="#2e3250"/>
+    <circle cx="430" cy="494" r="30" fill="#c9c5b8"/>
+    <rect x="378" y="520" width="104" height="104" rx="36" fill="#c9c5b8"/>
+  </g>
+
+  <!-- yellow accent ring -->
+  <circle cx="540" cy="362" r="40" fill="none" stroke="#f3d62b" stroke-width="6"/>
+
+  <!-- floor -->
+  <ellipse cx="430" cy="660" rx="260" ry="30" fill="#181a24"/>
+
+  <!-- floating value badges -->
+  <g>
+    <rect x="640" y="170" width="170" height="64" rx="14" fill="#181a24" stroke="#2a2c3c" stroke-width="2"/>
+    <circle cx="672" cy="202" r="14" fill="#f3d62b"/>
+    <rect x="696" y="194" width="96" height="8" rx="4" fill="#3a3d52"/>
+    <rect x="696" y="208" width="70" height="6" rx="3" fill="#2a2c3c"/>
+  </g>
+  <g>
+    <rect x="80" y="540" width="170" height="64" rx="14" fill="#181a24" stroke="#2a2c3c" stroke-width="2"/>
+    <circle cx="112" cy="572" r="14" fill="#ef5b86"/>
+    <rect x="136" y="564" width="96" height="8" rx="4" fill="#3a3d52"/>
+    <rect x="136" y="578" width="70" height="6" rx="3" fill="#2a2c3c"/>
+  </g>
+  <g>
+    <rect x="650" y="560" width="170" height="64" rx="14" fill="#181a24" stroke="#2a2c3c" stroke-width="2"/>
+    <circle cx="682" cy="592" r="14" fill="#7c6cf0"/>
+    <rect x="706" y="584" width="96" height="8" rx="4" fill="#3a3d52"/>
+    <rect x="706" y="598" width="70" height="6" rx="3" fill="#2a2c3c"/>
+  </g>
+
+  <!-- small decorative dots -->
+  <circle cx="160" cy="180" r="8" fill="#f3d62b"/>
+  <circle cx="760" cy="700" r="10" fill="#ef5b86" opacity="0.85"/>
+  <rect x="200" y="120" width="22" height="22" rx="5" fill="#7c6cf0" transform="rotate(15 211 131)"/>
+</svg>

@@ -1,0 +1,38 @@
+<svg width="900" height="760" viewBox="0 0 900 760" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgGlowC" cx="50%" cy="15%" r="85%">
+      <stop offset="0%" stop-color="#241a30"/>
+      <stop offset="55%" stop-color="#15131f"/>
+      <stop offset="100%" stop-color="#0c0d13"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="760" fill="url(#bgGlowC)"/>
+
+  <!-- envelope -->
+  <g>
+    <rect x="240" y="260" width="420" height="280" rx="22" fill="#181a24" stroke="#2a2c3c" stroke-width="2"/>
+    <path d="M240 282 L450 430 L660 282" fill="none" stroke="#3a3d52" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- paper plane flying out -->
+  <g transform="translate(560,150) rotate(18)">
+    <path d="M0 0 L160 40 L0 80 L24 40 Z" fill="#f3d62b"/>
+    <path d="M0 0 L24 40 L0 80" fill="#e0bd1f"/>
+  </g>
+
+  <!-- chat bubble -->
+  <g transform="translate(120,180)">
+    <rect width="170" height="100" rx="20" fill="#181a24" stroke="#2a2c3c" stroke-width="2"/>
+    <rect x="20" y="28" width="120" height="8" rx="4" fill="#3a3d52"/>
+    <rect x="20" y="50" width="90" height="8" rx="4" fill="#2a2c3c"/>
+    <path d="M30 100 L30 130 L62 100 Z" fill="#181a24" stroke="#2a2c3c" stroke-width="2"/>
+  </g>
+
+  <!-- floating dots / shapes -->
+  <circle cx="730" cy="420" r="40" fill="#ef5b86" opacity="0.85"/>
+  <circle cx="170" cy="540" r="26" fill="#7c6cf0" opacity="0.85"/>
+  <rect x="700" y="560" width="26" height="26" rx="6" fill="#f3d62b" transform="rotate(15 713 573)"/>
+
+  <!-- ground -->
+  <ellipse cx="450" cy="660" rx="320" ry="30" fill="#13141d"/>
+</svg>

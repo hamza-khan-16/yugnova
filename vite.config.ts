@@ -22,6 +22,13 @@ export default defineConfig({
     plugins: [
       nitro({
         preset: "vercel",
+        // Ensure the public/backgrounds directory is served as static assets
+        publicAssets: [
+          {
+            dir: "public",
+            maxAge: 60 * 60 * 24 * 30, // 30 days cache
+          },
+        ],
       }),
     ],
   },
