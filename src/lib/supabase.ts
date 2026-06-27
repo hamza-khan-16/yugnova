@@ -46,11 +46,17 @@ export type Plan = {
 export type Blog = {
   id: string;
   title: string;
+  subtitle: string;
   excerpt: string;
   content: string;
   cover_image: string;
+  category: string;
+  tags: string[];
   author: string;
+  author_image: string;
+  read_time: string;
   published_at: string;
+  featured: boolean;
   order_index: number;
   created_at?: string;
 };

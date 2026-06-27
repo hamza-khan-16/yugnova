@@ -9,7 +9,19 @@ import { toast } from "sonner";
 const todayIso = () => new Date().toISOString().slice(0, 10);
 
 const EMPTY: Omit<Blog, "id" | "created_at"> = {
-  title: "", excerpt: "", content: "", cover_image: "", author: "Admin", published_at: todayIso(), order_index: 0,
+  title: "",
+  subtitle: "",
+  excerpt: "",
+  content: "",
+  cover_image: "",
+  category: "",
+  tags: [],
+  author: "Admin",
+  author_image: "",
+  read_time: "",
+  published_at: todayIso(),
+  featured: false,
+  order_index: 0,
 };
 
 const inp = "w-full px-4 py-2.5 rounded-xl text-sm text-white bg-white/5 border border-white/10 outline-none focus:border-violet-500/60 focus:bg-violet-500/5 transition-all placeholder-white/20";
@@ -120,8 +132,13 @@ export function BlogManager() {
               <div className="p-4">
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
-                    <div className="text-sm font-bold text-white">{p.title}</div>
-                    <div className="text-xs text-amber-400 mt-0.5">{p.published_at} · {p.author}</div>
+                    <div className="text-sm font-bold text-white flex items-center gap-2">
+                      {p.title}
+                      {p.featured && <span className="text-[10px] font-mono uppercase tracking-wide text-violet-300 bg-violet-500/15 px-1.5 py-0.5 rounded">Featured</span>}
+                    </div>
+                    <div className="text-xs text-amber-400 mt-0.5">
+                      {p.published_at} · {p.author}{p.category ? ` · ${p.category}` : ""}{p.read_time ? ` · ${p.read_time}` : ""}
+                    </div>
                   </div>
                   <div className="flex gap-2 flex-shrink-0">
                     <button onClick={() => openEdit(p)} className="w-7 h-7 rounded-lg flex items-center justify-center bg-white/5 hover:bg-violet-500/20 text-white/40 hover:text-violet-400 transition-all">
@@ -153,8 +170,12 @@ export function BlogManager() {
               </div>
 
               <Field label="Title"><input className={inp} value={editing.title} onChange={e => setEditing({ ...editing, title: e.target.value })} placeholder="How to Build Scalable Web Applications" /></Field>
+              <Field label="Subtitle / Heading"><input className={inp} value={editing.subtitle} onChange={e => setEditing({ ...editing, subtitle: e.target.value })} placeholder="A short subheading shown under the title" /></Field>
               <Field label="Excerpt"><textarea className={inp + " resize-none"} rows={2} value={editing.excerpt} onChange={e => setEditing({ ...editing, excerpt: e.target.value })} placeholder="Short summary shown on the blog card..." /></Field>
-              <Field label="Content"><textarea className={inp + " resize-none"} rows={8} value={editing.content} onChange={e => setEditing({ ...editing, content: e.target.value })} placeholder="Full post content..." /></Field>
+              <Field label="Main Body / Content">
+                <textarea className={inp + " resize-none font-mono"} rows={14} value={editing.content} onChange={e => setEditing({ ...editing, content: e.target.value })} placeholder={"Write the full post here.\n\nLeave a blank line between paragraphs.\n\nStart a line with ## for a subheading, and with - for a bullet point."} />
+                <p className="mt-1.5 text-[11px] text-white/30">Blank line = new paragraph · line starting with <code className="text-white/50">##</code> = subheading · line starting with <code className="text-white/50">-</code> = bullet point</p>
+              </Field>
               <Field label="Cover Image">
                 <MediaUploadField
                   value={editing.cover_image}
@@ -165,10 +186,37 @@ export function BlogManager() {
                 />
               </Field>
               <div className="grid grid-cols-2 gap-4">
+                <Field label="Category"><input className={inp} value={editing.category} onChange={e => setEditing({ ...editing, category: e.target.value })} placeholder="Web Development" /></Field>
+                <Field label="Read Time"><input className={inp} value={editing.read_time} onChange={e => setEditing({ ...editing, read_time: e.target.value })} placeholder="5 min read" /></Field>
+              </div>
+              <Field label="Tags (comma separated)">
+                <input
+                  className={inp}
+                  value={editing.tags.join(", ")}
+                  onChange={e => setEditing({ ...editing, tags: e.target.value.split(",").map(t => t.trim()).filter(Boolean) })}
+                  placeholder="react, performance, ux"
+                />
+              </Field>
+              <div className="grid grid-cols-2 gap-4">
                 <Field label="Author"><input className={inp} value={editing.author} onChange={e => setEditing({ ...editing, author: e.target.value })} placeholder="Admin" /></Field>
                 <Field label="Published Date"><input className={inp} type="date" value={editing.published_at} onChange={e => setEditing({ ...editing, published_at: e.target.value })} /></Field>
               </div>
-              <Field label="Order Index"><input className={inp} type="number" value={editing.order_index} onChange={e => setEditing({ ...editing, order_index: +e.target.value })} /></Field>
+              <Field label="Author Image">
+                <MediaUploadField
+                  value={editing.author_image}
+                  onChange={(url) => setEditing({ ...editing, author_image: url })}
+                  folder="blog-images"
+                  accept="image/*"
+                  placeholder="https://... or upload"
+                />
+              </Field>
+              <div className="grid grid-cols-2 gap-4 items-end">
+                <Field label="Order Index"><input className={inp} type="number" value={editing.order_index} onChange={e => setEditing({ ...editing, order_index: +e.target.value })} /></Field>
+                <label className="flex items-center gap-2 pb-2.5 text-sm text-white/70 cursor-pointer">
+                  <input type="checkbox" checked={editing.featured} onChange={e => setEditing({ ...editing, featured: e.target.checked })} className="w-4 h-4 rounded accent-violet-500" />
+                  Featured post
+                </label>
+              </div>
 
               <div className="flex gap-3 pt-2">
                 <button onClick={close} className="flex-1 py-2.5 rounded-xl text-sm text-white/60 bg-white/5 hover:bg-white/10 transition-all">Cancel</button>

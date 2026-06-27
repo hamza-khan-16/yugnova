@@ -48,14 +48,29 @@ create table if not exists plans (
 create table if not exists blogs (
   id uuid primary key default gen_random_uuid(),
   title text not null,
+  subtitle text not null default '',
   excerpt text not null default '',
   content text not null default '',
   cover_image text not null default '',
+  category text not null default '',
+  tags text[] not null default '{}',
   author text not null default 'Admin',
+  author_image text not null default '',
+  read_time text not null default '',
   published_at date not null default current_date,
+  featured boolean not null default false,
   order_index integer not null default 0,
   created_at timestamptz not null default now()
 );
+
+-- If you already created the blogs table before this update, run these
+-- to add the new columns without losing existing posts:
+-- alter table blogs add column if not exists subtitle text not null default '';
+-- alter table blogs add column if not exists category text not null default '';
+-- alter table blogs add column if not exists tags text[] not null default '{}';
+-- alter table blogs add column if not exists author_image text not null default '';
+-- alter table blogs add column if not exists read_time text not null default '';
+-- alter table blogs add column if not exists featured boolean not null default false;
 
 -- ============================================================
 -- Row Level Security (RLS)

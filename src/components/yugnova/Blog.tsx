@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 import { SectionLabel } from "./SectionLabel";
 import { supabase, type Blog as DbBlog } from "@/lib/supabase";
 import { useSectionStyleImage } from "@/lib/useSectionStyleImage";
@@ -10,6 +11,8 @@ type Post = {
   date: string;
   color: string;
   image?: string;
+  category?: string;
+  readTime?: string;
 };
 
 const FALLBACK_POSTS: Post[] = [
@@ -33,6 +36,8 @@ function toPost(b: DbBlog, i: number): Post {
     date: formatDate(b.published_at),
     color: GRADIENT_COLORS[i % GRADIENT_COLORS.length],
     image: b.cover_image || undefined,
+    category: b.category || undefined,
+    readTime: b.read_time || undefined,
   };
 }
 
@@ -70,28 +75,40 @@ export function Blog() {
 
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6">
           {posts.map((p, i) => (
-            <motion.a
-              href="#"
+            <motion.div
               key={p.id}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="rounded-2xl overflow-hidden border border-[color:var(--border-soft)] bg-[color:var(--surface)] hover:border-[color:var(--border-strong)] transition-colors"
             >
-              <div
-                className="aspect-[16/10]"
-                style={
-                  p.image
-                    ? { backgroundImage: `url(${p.image})`, backgroundSize: "cover", backgroundPosition: "center" }
-                    : { background: `linear-gradient(135deg, ${p.color}, #0c0d13)` }
-                }
-              />
-              <div className="p-6">
-                <h4 className="font-display text-[16.5px] font-bold leading-snug">{p.title}</h4>
-                <div className="mt-3 font-mono text-[12px] text-[color:var(--text-dim)]">{p.date} · By Admin</div>
-              </div>
-            </motion.a>
+              <Link
+                to="/blog/$blogId"
+                params={{ blogId: p.id }}
+                className="block rounded-2xl overflow-hidden border border-[color:var(--border-soft)] bg-[color:var(--surface)] hover:border-[color:var(--border-strong)] transition-colors"
+              >
+                <div
+                  className="aspect-[16/10] relative"
+                  style={
+                    p.image
+                      ? { backgroundImage: `url(${p.image})`, backgroundSize: "cover", backgroundPosition: "center" }
+                      : { background: `linear-gradient(135deg, ${p.color}, #0c0d13)` }
+                  }
+                >
+                  {p.category && (
+                    <span className="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-wide bg-black/50 text-white px-2 py-1 rounded-full backdrop-blur-sm">
+                      {p.category}
+                    </span>
+                  )}
+                </div>
+                <div className="p-6">
+                  <h4 className="font-display text-[16.5px] font-bold leading-snug">{p.title}</h4>
+                  <div className="mt-3 font-mono text-[12px] text-[color:var(--text-dim)]">
+                    {p.date} · By Admin{p.readTime ? ` · ${p.readTime}` : ""}
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>

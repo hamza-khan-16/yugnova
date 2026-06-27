@@ -38,11 +38,17 @@ const planInput = z.object({
 
 const blogInput = z.object({
   title: z.string().min(1),
+  subtitle: z.string(),
   excerpt: z.string(),
   content: z.string(),
   cover_image: z.string(),
+  category: z.string(),
+  tags: z.array(z.string()),
   author: z.string(),
+  author_image: z.string(),
+  read_time: z.string(),
   published_at: z.string(),
+  featured: z.boolean(),
   order_index: z.number(),
 });
 

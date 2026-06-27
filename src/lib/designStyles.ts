@@ -61,7 +61,7 @@ function imagesFor(styleId: StyleId): Record<SectionKey, string> {
   return map;
 }
 
-export const STYLES: StyleDef[] = [
+const ALL_STYLES: StyleDef[] = [
   {
     id: "blueprint",
     label: "Blueprint",
@@ -246,6 +246,20 @@ export const STYLES: StyleDef[] = [
   },
 ];
 
+// TEMPORARILY DISABLED: "Glass" (glassmorphism), "Brutalist", and "Minimal"
+// are commented out of the public-facing picker for now. Their full
+// definitions stay in ALL_STYLES above, so re-enabling them later is just
+// removing the id from this list.
+const DISABLED_STYLE_IDS: StyleId[] = [
+  "glass",
+  "brutalist",
+  "minimal",
+];
+
+export const STYLES: StyleDef[] = ALL_STYLES.filter(
+  (s) => !DISABLED_STYLE_IDS.includes(s.id),
+);
+
 export function getStyle(id: StyleId): StyleDef {
-  return STYLES.find((s) => s.id === id) ?? STYLES[6];
+  return ALL_STYLES.find((s) => s.id === id) ?? ALL_STYLES[0];
 }
