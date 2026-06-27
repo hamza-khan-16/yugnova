@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { CheckCircle2, Clock, Heart, DollarSign, Cpu, RotateCcw } from "lucide-react";
 import { SectionLabel } from "./SectionLabel";
+import { useSectionStyleImage } from "@/lib/useSectionStyleImage";
 
 const stats = [
   { value: "50+", label: "Projects Completed" },
@@ -18,10 +19,12 @@ const values = [
 ];
 
 export function About() {
+  const styleImage = useSectionStyleImage("about");
+
   return (
     <section id="about" className="relative overflow-hidden py-20 md:py-28">
       <div className="absolute inset-0 -z-10">
-        <img src="/backgrounds/bg-about.jpeg" alt="" className="h-full w-full object-cover object-center" style={{ imageRendering: "auto", filter: "none" }} />
+        <img src={styleImage ?? "/backgrounds/bg-about.jpeg"} alt="" className="h-full w-full object-cover object-center" style={{ imageRendering: "auto", filter: "none" }} />
         <div className="absolute inset-0 bg-[#0c0d13]/70" />
       </div>
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8 md:px-12">

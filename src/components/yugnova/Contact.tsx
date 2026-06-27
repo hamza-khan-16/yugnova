@@ -1,24 +1,38 @@
 import { useForm } from "react-hook-form";
 import { Mail, Phone, MapPin } from "lucide-react";
-import { useState } from "react";
 import { toast } from "sonner";
 import { SectionLabel } from "./SectionLabel";
+import { useSectionStyleImage } from "@/lib/useSectionStyleImage";
 
 type FormData = { name: string; email: string; message: string };
+
+const CONTACT_EMAIL = "hello@yugnova.com";
 
 const inputCls =
   "w-full rounded-lg bg-[color:var(--surface-2)] border border-[color:var(--border-soft)] px-4 py-3.5 text-[14.5px] outline-none focus:border-[color:var(--primary)] transition-all placeholder:text-[color:var(--text-dim)]";
 
 export function Contact() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
-  const [sending, setSending] = useState(false);
+  const styleImage = useSectionStyleImage("contact");
 
-  const onSubmit = async () => {
-    setSending(true);
-    await new Promise((r) => setTimeout(r, 700));
-    toast.success("Message sent. We'll be in touch within 24 hours.");
+  const onSubmit = (data: FormData) => {
+    const subject = `New inquiry from ${data.name}`;
+    const body = [
+      `Name: ${data.name}`,
+      `Email: ${data.email}`,
+      "",
+      "Message:",
+      data.message,
+    ].join("\n");
+
+    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // Opens the visitor's own email client with the message pre-filled —
+    // they just hit send from their inbox, no backend mail service needed.
+    window.location.href = mailtoUrl;
+
+    toast.success("Opening your email app — just hit send!");
     reset();
-    setSending(false);
   };
 
   const info = [
@@ -30,7 +44,7 @@ export function Contact() {
   return (
     <section id="contact" className="relative overflow-hidden py-20 md:py-28">
       <div className="absolute inset-0 -z-10">
-        <img src="/backgrounds/bg-contact.jpeg" alt="" className="h-full w-full object-cover object-center" style={{ imageRendering: "auto", filter: "none" }} />
+        <img src={styleImage ?? "/backgrounds/bg-contact.jpeg"} alt="" className="h-full w-full object-cover object-center" style={{ imageRendering: "auto", filter: "none" }} />
         <div className="absolute inset-0 bg-[#13141d]/40" />
       </div>
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8 md:px-12">
@@ -95,10 +109,9 @@ export function Contact() {
                 {errors.message && <span className="text-xs text-red-400">Required</span>}
               </div>
               <button
-                disabled={sending}
-                className="w-full rounded-lg bg-[color:var(--primary)] text-[color:var(--primary-foreground)] font-bold text-[14.5px] px-6 py-4 hover:-translate-y-0.5 transition-all disabled:opacity-60"
+                className="w-full rounded-lg bg-[color:var(--primary)] text-[color:var(--primary-foreground)] font-bold text-[14.5px] px-6 py-4 hover:-translate-y-0.5 transition-all"
               >
-                {sending ? "Sending…" : "Send Message ↗"}
+                Send Message ↗
               </button>
             </form>
           </div>

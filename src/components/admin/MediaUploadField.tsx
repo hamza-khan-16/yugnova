@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
 import { adminCreateUploadUrlFn } from "@/lib/api/adminUpload.functions";
 
-type Folder = "reel-posters" | "reel-videos" | "project-images";
+type Folder = "reel-posters" | "reel-videos" | "project-images" | "blog-images";
 
 const inp =
   "w-full px-4 py-2.5 rounded-xl text-sm text-white bg-white/5 border border-white/10 outline-none focus:border-violet-500/60 focus:bg-violet-500/5 transition-all placeholder-white/20";

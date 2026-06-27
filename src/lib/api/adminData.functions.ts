@@ -36,14 +36,25 @@ const planInput = z.object({
   order_index: z.number(),
 });
 
+const blogInput = z.object({
+  title: z.string().min(1),
+  excerpt: z.string(),
+  content: z.string(),
+  cover_image: z.string(),
+  author: z.string(),
+  published_at: z.string(),
+  order_index: z.number(),
+});
+
 const schemas = {
   reels: reelInput,
   projects: projectInput,
   plans: planInput,
+  blogs: blogInput,
 } as const;
 
 type TableName = keyof typeof schemas;
-const tableNameSchema = z.enum(["reels", "projects", "plans"]);
+const tableNameSchema = z.enum(["reels", "projects", "plans", "blogs"]);
 
 export const adminSaveRowFn = createServerFn({ method: "POST" })
   .validator(

@@ -2,19 +2,21 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Film, FolderKanban, BadgeIndianRupee, LogOut, Menu, X,
-  LayoutDashboard, ChevronRight,
+  LayoutDashboard, ChevronRight, Newspaper,
 } from "lucide-react";
 import { adminLogout } from "@/lib/adminAuth";
 import { ReelsManager } from "./ReelsManager";
 import { ProjectsManager } from "./ProjectsManager";
 import { PlansManager } from "./PlansManager";
+import { BlogManager } from "./BlogManager";
 
-type Tab = "reels" | "projects" | "plans";
+type Tab = "reels" | "projects" | "plans" | "blog";
 
 const NAV = [
   { id: "reels" as Tab, label: "Reels", icon: Film, color: "text-violet-400", accent: "rgba(139,92,246,0.15)" },
   { id: "projects" as Tab, label: "Projects", icon: FolderKanban, color: "text-cyan-400", accent: "rgba(34,211,238,0.15)" },
   { id: "plans" as Tab, label: "Plans & Pricing", icon: BadgeIndianRupee, color: "text-emerald-400", accent: "rgba(52,211,153,0.15)" },
+  { id: "blog" as Tab, label: "Blog", icon: Newspaper, color: "text-amber-400", accent: "rgba(251,191,36,0.15)" },
 ];
 
 export function AdminPanel() {
@@ -31,7 +33,7 @@ export function AdminPanel() {
   return (
     <div
       className="min-h-screen flex"
-      style={{ background: "#08080a", fontFamily: "DM Sans, sans-serif" }}
+      style={{ background: "#08080a", fontFamily: "Inter, sans-serif" }}
     >
       {/* Mobile overlay */}
       <AnimatePresence>
@@ -63,7 +65,7 @@ export function AdminPanel() {
               <LayoutDashboard className="w-4 h-4 text-white" />
             </div>
             <div>
-              <div className="text-sm font-bold text-white tracking-tight" style={{ fontFamily: "Syne, sans-serif" }}>
+              <div className="text-sm font-bold text-white tracking-tight" style={{ fontFamily: "Space Grotesk, sans-serif" }}>
                 YUGNOVA
               </div>
               <div className="text-[10px] font-mono text-white/30 uppercase tracking-widest">Admin Panel</div>
@@ -140,6 +142,7 @@ export function AdminPanel() {
               {tab === "reels" && <ReelsManager />}
               {tab === "projects" && <ProjectsManager />}
               {tab === "plans" && <PlansManager />}
+              {tab === "blog" && <BlogManager />}
             </motion.div>
           </AnimatePresence>
         </main>

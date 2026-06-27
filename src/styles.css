@@ -18,9 +18,9 @@
   --color-accent: var(--accent);
   --color-text-soft: var(--text-soft);
   --color-text-dim: var(--text-dim);
-  --font-display: "Syne", sans-serif;
-  --font-body: "DM Sans", sans-serif;
-  --font-mono: "Space Mono", monospace;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
   --color-border: var(--border-soft);
   --color-ring: var(--primary);
   --color-input: var(--border-soft);
@@ -185,3 +185,34 @@
   50% { box-shadow: 0 0 40px 8px var(--glow); }
 }
 .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+
+/* ============================================================
+   Theme-preview shape overrides
+   Only active when [data-preview-style] is set on <html>, which only
+   happens inside the admin panel's live-preview iframe (driven by
+   StylePreviewBridge.tsx). Normal site visitors never get this
+   attribute, so none of this ever reaches real visitors.
+   ============================================================ */
+[data-preview-style] {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+[data-preview-style] [class*="rounded-"],
+[data-preview-style] .rounded,
+[data-preview-style] button,
+[data-preview-style] input,
+[data-preview-style] textarea {
+  border-radius: var(--preview-radius, inherit) !important;
+}
+[data-preview-style] [class*="border"] {
+  border-width: var(--preview-border-width, 1px);
+  border-style: var(--preview-card-border-style, solid);
+}
+[data-preview-style] [class*="shadow-"] {
+  box-shadow: var(--preview-shadow, none) !important;
+}
+[data-preview-style].preview-uppercase-headings h1,
+[data-preview-style].preview-uppercase-headings h2,
+[data-preview-style].preview-uppercase-headings h3 {
+  text-transform: uppercase;
+}
+

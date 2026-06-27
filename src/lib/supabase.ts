@@ -42,3 +42,15 @@ export type Plan = {
   order_index: number;
   created_at?: string;
 };
+
+export type Blog = {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  cover_image: string;
+  author: string;
+  published_at: string;
+  order_index: number;
+  created_at?: string;
+};

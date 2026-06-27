@@ -6,7 +6,7 @@ import { getSupabaseAdmin } from "../supabaseAdmin.server";
 
 // Folders inside the "media" bucket, kept separate so they're easy to
 // browse/clean up from the Supabase dashboard.
-const folderSchema = z.enum(["reel-posters", "reel-videos", "project-images"]);
+const folderSchema = z.enum(["reel-posters", "reel-videos", "project-images", "blog-images"]);
 
 function safeExtension(filename: string): string {
   const match = /\.[a-zA-Z0-9]+$/.exec(filename);

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { SectionLabel } from "./SectionLabel";
 import { supabase, type Project as DbProject } from "@/lib/supabase";
+import { useSectionStyleImage } from "@/lib/useSectionStyleImage";
 
 type Project = {
   id: string;
@@ -77,6 +78,7 @@ function toProject(p: DbProject): Project {
 export function Projects() {
   const [projects, setProjects] = useState<Project[]>(FALLBACK_PROJECTS);
   const [filter, setFilter] = useState<typeof FILTERS[number]["key"]>("all");
+  const styleImage = useSectionStyleImage("projects");
 
   useEffect(() => {
     supabase
@@ -95,7 +97,7 @@ export function Projects() {
   return (
     <section id="projects" className="relative overflow-hidden py-20 md:py-28">
       <div className="absolute inset-0 -z-10">
-        <img src="/backgrounds/bg-portfolio.jpeg" alt="" className="h-full w-full object-cover object-center" style={{ imageRendering: "auto", filter: "none" }} />
+        <img src={styleImage ?? "/backgrounds/bg-portfolio.jpeg"} alt="" className="h-full w-full object-cover object-center" style={{ imageRendering: "auto", filter: "none" }} />
         <div className="absolute inset-0 bg-[#13141d]/20" />
       </div>
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8 md:px-12">

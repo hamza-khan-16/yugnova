@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { SectionLabel } from "./SectionLabel";
 import { supabase, type Plan } from "@/lib/supabase";
+import { useSectionStyleImage } from "@/lib/useSectionStyleImage";
 
 type PricingPlan = {
   id: string;
@@ -92,6 +93,7 @@ function toPricingPlan(p: Plan): PricingPlan {
 
 export function Pricing() {
   const [plans, setPlans] = useState<PricingPlan[]>(FALLBACK_PLANS);
+  const styleImage = useSectionStyleImage("pricing");
 
   useEffect(() => {
     supabase
@@ -109,7 +111,7 @@ export function Pricing() {
     <section id="pricing" className="relative overflow-hidden py-20 md:py-28">
       <div className="absolute inset-0 -z-10">
         <img
-          src="/backgrounds/bg-pricing.jpeg"
+          src={styleImage ?? "/backgrounds/bg-pricing.jpeg"}
           alt=""
           className="h-full w-full object-cover object-center"
           style={{ imageRendering: "auto", filter: "none" }}

@@ -79,7 +79,7 @@ export function AdminLogin({ onSuccess }: AdminLoginProps) {
             </div>
             <h1
               className="text-2xl font-bold text-white tracking-tight"
-              style={{ fontFamily: "Syne, sans-serif" }}
+              style={{ fontFamily: "Space Grotesk, sans-serif" }}
             >
               YUGNOVA Admin
             </h1>

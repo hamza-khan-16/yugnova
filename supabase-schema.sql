@@ -44,6 +44,19 @@ create table if not exists plans (
   created_at timestamptz not null default now()
 );
 
+-- 4. BLOGS table
+create table if not exists blogs (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  excerpt text not null default '',
+  content text not null default '',
+  cover_image text not null default '',
+  author text not null default 'Admin',
+  published_at date not null default current_date,
+  order_index integer not null default 0,
+  created_at timestamptz not null default now()
+);
+
 -- ============================================================
 -- Row Level Security (RLS)
 --
@@ -58,10 +71,12 @@ create table if not exists plans (
 alter table reels enable row level security;
 alter table projects enable row level security;
 alter table plans enable row level security;
+alter table blogs enable row level security;
 
 create policy "public read reels" on reels for select using (true);
 create policy "public read projects" on projects for select using (true);
 create policy "public read plans" on plans for select using (true);
+create policy "public read blogs" on blogs for select using (true);
 
 -- ============================================================
 -- Storage bucket for admin-uploaded media (reel posters/videos,

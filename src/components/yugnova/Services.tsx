@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Code2, Smartphone, PenTool, Layers, ShieldCheck, Target } from "lucide-react";
 import { SectionLabel } from "./SectionLabel";
+import { useSectionStyleImage } from "@/lib/useSectionStyleImage";
 
 const services = [
   { icon: Code2, title: "Web Development", desc: "High-performance websites built with the latest tech." },
@@ -12,10 +13,12 @@ const services = [
 ];
 
 export function Services() {
+  const styleImage = useSectionStyleImage("services");
+
   return (
     <section id="services" className="relative overflow-hidden py-20 md:py-28">
       <div className="absolute inset-0 -z-10">
-        <img src="/backgrounds/bg-services.jpeg" alt="" className="h-full w-full object-cover object-center" style={{ imageRendering: "auto", filter: "none" }} />
+        <img src={styleImage ?? "/backgrounds/bg-services.jpeg"} alt="" className="h-full w-full object-cover object-center" style={{ imageRendering: "auto", filter: "none" }} />
         <div className="absolute inset-0 bg-[#13141d]/50" />
       </div>
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8 md:px-12">

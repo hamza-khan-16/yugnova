@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useSectionStyleImage } from "@/lib/useSectionStyleImage";
 
 const stats = [
   { value: "50+", label: "Projects Completed" },
@@ -9,10 +10,12 @@ const stats = [
 const brands = ["Google", "Microsoft", "AWS", "Airbnb", "Stripe"];
 
 export function Hero() {
+  const styleImage = useSectionStyleImage("hero");
+
   return (
     <section id="home" className="relative overflow-hidden pt-28 sm:pt-32 pb-16 md:pb-24">
       <div className="absolute inset-0 -z-10">
-        <img src="/backgrounds/bg-home.jpeg" alt="" className="h-full w-full object-cover object-center" style={{ imageRendering: "auto", filter: "none" }} />
+        <img src={styleImage ?? "/backgrounds/bg-home.jpeg"} alt="" className="h-full w-full object-cover object-center" style={{ imageRendering: "auto", filter: "none" }} />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0c0d13]/10 via-[#0c0d13]/25 to-[#0c0d13]/70" />
       </div>
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8 md:px-12">

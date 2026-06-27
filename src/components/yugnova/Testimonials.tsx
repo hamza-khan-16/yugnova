@@ -1,4 +1,5 @@
 import { SectionLabel } from "./SectionLabel";
+import { useSectionStyleImage } from "@/lib/useSectionStyleImage";
 
 const tns = [
   { name: "Aarav Mehta", role: "CEO, Nimbus Labs", text: "YUGNOVA shipped our AI platform in 9 weeks. The craft, the speed, the partnership — unmatched." },
@@ -29,9 +30,15 @@ function Card({ t }: { t: (typeof tns)[number] }) {
 
 export function Testimonials() {
   const loop = [...tns, ...tns];
+  const styleImage = useSectionStyleImage("testimonials");
   return (
     <section id="testimonials" className="relative py-20 md:py-28 lg:py-32 bg-[color:var(--background)] overflow-hidden">
-      
+      {styleImage && (
+        <div className="absolute inset-0 -z-10">
+          <img src={styleImage} alt="" className="h-full w-full object-cover object-center" />
+          <div className="absolute inset-0 bg-[color:var(--background)]/75" />
+        </div>
+      )}
       <div className="mx-auto max-w-[1280px] px-6 md:px-12">
         <div className="text-center max-w-2xl mx-auto">
           <SectionLabel center>Kind Words</SectionLabel>

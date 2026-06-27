@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { SectionLabel } from "./SectionLabel";
+import { useSectionStyleImage } from "@/lib/useSectionStyleImage";
 
 const steps = [
   { n: "01", title: "Discovery", desc: "Deep-dive into your goals, users, and constraints. We listen before we build." },
@@ -9,8 +10,16 @@ const steps = [
 ];
 
 export function Process() {
+  const styleImage = useSectionStyleImage("process");
+
   return (
-    <section id="process" className="relative py-20 md:py-28 lg:py-32 bg-[color:var(--background)]">
+    <section id="process" className="relative overflow-hidden py-20 md:py-28 lg:py-32 bg-[color:var(--background)]">
+      {styleImage && (
+        <div className="absolute inset-0 -z-10">
+          <img src={styleImage} alt="" className="h-full w-full object-cover object-center" />
+          <div className="absolute inset-0 bg-[color:var(--background)]/75" />
+        </div>
+      )}
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8 md:px-12">
         <div className="text-center max-w-2xl mx-auto">
           <SectionLabel center>How We Work</SectionLabel>

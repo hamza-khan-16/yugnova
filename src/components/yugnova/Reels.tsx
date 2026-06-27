@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Play, Pause, Volume2, VolumeX, Heart, MessageCircle, Share2, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { SectionLabel } from "./SectionLabel";
 import { supabase, type Reel as DbReel } from "@/lib/supabase";
+import { useSectionStyleImage } from "@/lib/useSectionStyleImage";
 
 type Reel = {
   id: string;
@@ -167,6 +168,7 @@ function ReelCard({ reel, index }: { reel: Reel; index: number }) {
 export function Reels() {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [reels, setReels] = useState<Reel[]>(FALLBACK_REELS);
+  const styleImage = useSectionStyleImage("reels");
 
   useEffect(() => {
     supabase
@@ -187,6 +189,12 @@ export function Reels() {
 
   return (
     <section id="reels" className="relative py-20 md:py-24 lg:py-32 overflow-hidden">
+      {styleImage && (
+        <div className="absolute inset-0 -z-10">
+          <img src={styleImage} alt="" className="h-full w-full object-cover object-center" />
+          <div className="absolute inset-0 bg-[color:var(--background)]/75" />
+        </div>
+      )}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-1/3 w-[300px] md:w-[480px] h-[300px] md:h-[480px] rounded-full opacity-20 blur-3xl"
           style={{ background: "radial-gradient(circle, #d946ef, transparent 70%)" }} />
